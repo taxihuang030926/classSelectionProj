@@ -50,7 +50,7 @@ def course_data(course_id):
     else:
         cur.close()
         return None
-
+#
 
 # # 取得並列出所有查詢結果
 #     for (description, ) in cur.fetchall():
