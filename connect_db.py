@@ -1,7 +1,7 @@
 import mysql.connector
 import yaml, os
 from flask import Flask, request, render_template, redirect
-from init import Student, Courses, Time_slot, Section, Instructor, Department, Classroom
+import init
 
 currentlocation = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__)
@@ -30,10 +30,10 @@ def checklogin():
     PW = request.form.get('Password')
 
     curser = connectServer.cursor()
-    query1 = "SELECT S_ID, S_pwd FROM Student WHERE S_ID = {un} AND S_pwd= {pw})".format(un=UN, pw=PW)
+    query1 = 'SELECT S_ID, S_pwd FROM Student WHERE S_ID = "{un}" AND S_pwd= "{pw}";'.format(un=UN, pw=PW)
 
-    rows = curser.execute(query1) #建立一個 游標對象
-    rows = rows.fetchall()
+    curser.execute(query1) #建立一個 游標對象
+    rows = curser.fetchall()
     if len(rows) == 1:
         return redirect
     else:
@@ -50,7 +50,7 @@ def student(SID):
     result = cur.fetchone()
     
     if result:
-        student = Student(S_ID=result[0], Name=result[1], Ttl_Credit=result[2], S_pwd=result[3], dept=result[4])
+        student = init.Student(S_ID=result[0], Name=result[1], Ttl_Credit=result[2], S_pwd=result[3], dept=result[4])
         cur.close()
         return student
     else:
@@ -63,7 +63,7 @@ def courses(C_ID):
     result = cur.fetchone()
     
     if result:
-        course = Courses(Course_ID=result[0], Course_Name=result[1], dept=result[2], Course_Description=result[3], Course_Credit=result[4])
+        course = init.Courses(Course_ID=result[0], Course_Name=result[1], dept=result[2], Course_Description=result[3], Course_Credit=result[4])
         cur.close()
         return course
     else:
@@ -77,7 +77,7 @@ def time_slot():
 
     times_table_list = []
     for result in results:
-        time_entry = Time_slot(TS_ID=result[0], Session=result[1], Course_ID=result[2])
+        time_entry = init.Time_slot(TS_ID=result[0], Session=result[1], Course_ID=result[2])
         times_table_list.append(time_entry)
 
     cur.close()
@@ -91,7 +91,7 @@ def section():
    
     Section_list = []
     for result in results:
-       section_entry = Section(Sec_ID=result[0], Semester=result[1], Year=result[2]),
+       section_entry = init.Section(Sec_ID=result[0], Semester=result[1], Year=result[2]),
        Section_list.append(section_entry)
        
     cur.close()
@@ -104,7 +104,7 @@ def instructor(T_ID):
     result = cur.fetchone()
     
     if result:
-        instructor = Instructor(I_ID=result[0], Name=result[1], Dept=result[2])
+        instructor = init.Instructor(I_ID=result[0], Name=result[1], Dept=result[2])
         cur.close()
         return instructor
     else:
@@ -118,7 +118,7 @@ def department():
 
     department_list = []
     for result in results:
-        department = Department(Dept_Name=result[0], Building=result[1])
+        department = init.Department(Dept_Name=result[0], Building=result[1])
         department_list.append(department)
 
     cur.close()
@@ -133,7 +133,7 @@ def classroom():
     classroom_list = []
     for result in results:
         # 假设 Classroom 类是用来表示教室的类
-        classroom = Classroom(Room_Number=result[0], Capacity=result[1], Building=result[2])
+        classroom = init.Classroom(Room_Number=result[0], Capacity=result[1], Building=result[2])
         classroom_list.append(classroom)
 
     cur.close()
@@ -142,4 +142,4 @@ def classroom():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

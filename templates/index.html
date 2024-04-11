@@ -59,21 +59,23 @@
         <label>帳號 :</label>
         <div class="input-box">
             <form method="POST">
-            <input type="text" maxlength="8" palceholder="Username", name="Usernamme" required></form>
-        </div>
-        <label>密碼 :</label>
-        <div class="input-box">
             <form method="POST">
-                <input type="password" palceholder="Password", name="Password" required></form>
-        </div>
-        <div class="remember-forget">
-            <lable><input type="checkbox"> Remember me</lable>
-            <div>
-                <a href="https://netid.fcu.edu.tw/">忘記密碼</a>
-            </div>
-        </div>
-
-        <button class="btn" class="btn" onclick="location.href='#'">Login</button>
+                <legend> 登入(Login) </legend>
+                <div class="input-box">
+                    <input type="text" maxlength="8" palceholder="NID", name="Username" required>
+                </div>
+                <label>密碼 :</label>
+                <div class="input-box">
+                    <input type="password" palceholder="Password", name="Password" required>
+                </div>
+                <div class="remember-forget">
+                    <label><input type="checkbox"> Remember me</label>
+                    <div>
+                        <a href="https://registration.fcu.edu.tw/%E9%A6%96%E9%A0%81-2/%E6%9C%8D%E5%8B%99%E5%B0%8D%E8%B1%A1/qa/">忘記密碼</a>
+                    </div>
+                </div>
+                <input type="submit" value="登入" name="Submit">
+            </form>
 
 <!--        <script type="text/javascript">-->
 <!--            function LOGIN(){-->
