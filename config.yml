@@ -1,6 +1,6 @@
 database:
-  host: localhost
+  host: "192.168.1.148"
   port: 3306
-  user: root
-  password: qwertyuiop666
-  database: demo
+  user: admint
+  password: 12341234
+  database: classselectionproj
