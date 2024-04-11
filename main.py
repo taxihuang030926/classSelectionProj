@@ -1,4 +1,4 @@
-from flask import Flask, request,render_template,redirect,session
+from flask import Flask, request, render_template, redirect
 import yaml
 import mysql.connector as mc
 import search, dct_user, dct_pwd
