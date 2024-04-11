@@ -1,6 +1,0 @@
-database:
-  host: "192.168.1.148"
-  port: 3306
-  user: admint
-  password: 12341234
-  database: classselectionproj
