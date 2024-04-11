@@ -3,24 +3,33 @@
 <head>
     <link rel="stylesheet" href="search.css">
     <meta charset="UTF-8">
-    <title>逢甲大學選課系統</title>
+    <title>甲甲大學選課系統 - 查詢關注</title>
 </head>
 <body>
+<script src="button.js"></script>
 <div class="fcol">
     <header>依輸入條件查詢</header>
 </div>
 <div class="require">
-    <lable><input type="checkbox"> 選課代號 : </lable>
-    <input type="text" maxlength="4" palceholder="textEntery" required><br>
+    <lable> 選課代號 : </lable>
+    <input type="text" id = "code" maxlength="4" palceholder="textEntery" required>
+    <input type="submit" onclick="auth_code()">
+    <br>
 
-    <lable><input type="checkbox"> 星期 : </lable>
-    <input type="text" maxlength="4" palceholder="textEntery" required><br>
+    <lable> 星期 : </lable>
+    <input type="number"  id="time" maxlength="4" palceholder="textEntery" min="1" max="5" required>
+    <input type="submit" onclick="auth_time()">
+    <br>
 
-    <lable><input type="checkbox"> 選課代號 : </lable>
-    <input type="text" maxlength="4" palceholder="textEntery" required><br>
+    <lable> 科目名稱 : </lable>
+    <input type="text"  id="name" maxlength="4" palceholder="textEntery" required>
+    <input type="submit" onclick="auth_name()">
+    <br>
 
-    <lable><input type="checkbox"> 開課教師姓名 : </lable>
-    <input type="text" maxlength="4" palceholder="textEntery" required><br>
+    <lable> 開課教師姓名 : </lable>
+    <input type="text" id="teachername" maxl ength="4" palceholder="textEntery" required>
+    <input type="submit" onclick="auth_teachername()">
+    <br>
 
     </div>
 <table bgcolor="#add8e6">

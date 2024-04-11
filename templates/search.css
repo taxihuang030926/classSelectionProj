@@ -80,10 +80,11 @@
 /*    display: block;*/
 /*    opacity: 1;*/
 /*}*/
-.day{
-    width: 30px;
+.day td{
+    width: 50px;
+    text-align: center;
 }
-.course{
+.course tr td{
     width: 100px;
-    align-content: center;
+    text-align: center;
 }
