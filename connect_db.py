@@ -23,7 +23,7 @@ connectServer = mysql.connector.connect(
 @app.route("/")
 def homepage():
     return render_template("index.html")
-
+##
 
 @app.route("/",methods = ["POST"])
 def checklogin():
