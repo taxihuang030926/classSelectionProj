@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
     <meta charset="UTF-8">
     <title>選課系統登錄頁面</title>
 </head>
 <body>
 <div class="topContent">
-    <img src="imgs/ccu.png" height="60px">
-    <span class="banner1" style="font-size: 30px">逢甲大學選課系統</span>
+    <div>
+        <img name="ccu-logo" src="{{url_for('static', filename='imgs/ccu.png')}}" height="60px" alt="ccu-logo">
+        <span class="banner1" style="font-size: 30px">逢甲大學選課系統</span>
+    </div>
         <div class="catalog">
                     <a href="https://coursesearch03.fcu.edu.tw/main.aspx?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTIyNjE4NTJ9.Z1_V9AnBlvPTTaTJoVHh6HLF5F9rAstRP1Hd2WLlngM">
                         課程檢索系統
