@@ -17,12 +17,6 @@ conn = mc.connect(host=import_data.get('database', {}).get('host', ''),
                   passwd=import_data.get('database', {}).get('password', ''),
                   database=import_data.get('database', {}).get('database', ''))
 
-# testcursor = conn.cursor()
-# testcursor.execute("SELECT * FROM Student")
-# result = testcursor.fetchall()
-# for i in result:
-#     print(i)
-
 # login
 @app.route("/")
 def homepage():
@@ -42,24 +36,56 @@ def checklogin():
     result = cursor.fetchall()
 
     if len(result) == 1:
-
+        cursor.close()
         return redirect("/search")
     else:
+        cursor.close()
         return redirect ("/")
     
 # search
 @app.route("/search")
-def searchpage():
+def searchpage(): 
     return render_template("search.html")
 
-    # print out course table
+@app.route("/search", methods = ["POST"])
+def search():
+    # methods: code, day, name, instructorname
+    # w\ multi select boxes: concatenate the selected values into a string and pass it to the query
+    # no select boxes: no need to use the join method
+    cursor = conn.cursor()
 
-    # follow
+    CODE = request.form.get('code')
+    DAY = request.form.get('day')
+    CNAME = request.form.get('coursename')
+    INAME = request.form.get('instructorname')
+
+    query = 'SELECT * FROM course WHERE '
+
+    # print out course table
+    if(CODE != ""):
+        query += 'course_id="{code}"'.format(code=CODE)
+
+    if(DAY != ""):
+        query += 'day="{day}"'.format(day=DAY)
+    
+    if(CNAME != ""):
+        query += 'course_name="%{cname}%"'.format(cname=CNAME)
+
+    if(INAME != ""):
+        query += 'instructor_name="%{iname}%"'.format(iname=INAME)
+    
+    query += ';'
+    cursor.execute(query)
+    result = cursor.fetchall()
+# follow
 
     # 
 
+    cursor.close()
+    return redirect("/search")
+
 # enroll and slot 
-@app.route("/enrollment")
+@app.route("/enroll")
 def enrollmentpage():
     return render_template("enrollment.html")
 
