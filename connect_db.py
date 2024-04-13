@@ -139,7 +139,6 @@ def classroom():
     cur.close()
     return classroom_list
 
-
-
+#HI
 if __name__ == "__main__":
     app.run(debug=True)
