@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-tw">
 <head>
     <link rel="stylesheet" href="/static/search.css">
     <meta charset="UTF-8">
@@ -11,35 +11,44 @@
     <header>依輸入條件查詢</header>
 </div>
 <div class="require">
-    <lable> 選課代號 : </lable>
-    <input type="text" id = "code" maxlength="4" placeholder="請輸入代號" required>
-    <input type="submit" onclick="auth_code()">
-    <br>
 
-    <lable> 星期 : </lable>
-    <select name="Day" id="day">
-        <option value="Mon">星期一</option>
-        <option value="Tue">星期二</option>
-        <option value="Wed">星期三</option>
-        <option value="Thu">星期四</option>
-        <option value="Fri">星期五</option>
+    <form method="POST">
+        <lable> 選課代號 : </lable>
+        <input type="text" name="Code" id = "code" maxlength="4" placeholder="請輸入代號">
+        <input type="submit" onclick="auth_code()">
+        <br>
+    </form>
 
-    </select>
-<!--    <input type="number"  id="time" maxlength="4" placeholder="textEntery" min="1" max="5" required>-->
-    <input type="submit" onclick="auth_time()">
-    <br>
+    <form method="POST">
+        <lable> 星期 : </lable>
+        <select name="Day" id="day">
+            <option value="Mon">星期一</option>
+            <option value="Tue">星期二</option>
+            <option value="Wed">星期三</option>
+            <option value="Thu">星期四</option>
+            <option value="Fri">星期五</option>
 
-    <lable> 科目名稱 : </lable>
-    <input type="text"  id="coursename" maxlength="4" placeholder="請輸入名稱" required>
-    <input type="submit" onclick="auth_name()">
-    <br>
+        </select>
+        <!-- <input type="number"  id="time" maxlength="4" placeholder="textEntery" min="1" max="5" required> -->
+        <input type="submit" onclick="auth_time()">
+        <br>
+    </form>
 
-    <lable> 開課教師姓名 : </lable>
-    <input type="text" id="instructorname" maxlength="4" placeholder="請輸入姓名
-    " required>
-    <input type="submit" onclick="auth_teachername()">
-    <br>
-    </div>
+    <form method="POST">
+        <lable> 科目名稱 : </lable>
+        <input type="text" name="Coursename" id="coursename" maxlength="20" placeholder="請輸入名稱">
+        <input type="submit" onclick="auth_name()">
+        <br>
+    </form>
+
+    <form method="POST">
+        <lable> 開課教師姓名 : </lable>
+        <input type="text" name="Instructorname" id="instructorname" maxlength="4" placeholder="請輸入姓名
+        ">
+        <input type="submit" onclick="auth_teachername()">
+        <br>
+    </form>
+</div>
 </body>
 <div class="container">
     <table>

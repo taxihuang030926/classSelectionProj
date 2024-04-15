@@ -42,7 +42,7 @@ function auth_code() {
     var code = document.getElementById("code").value;
 
     if(code != " " && code > 999) {
-        window.location.assign("search.html");
+        // window.location.assign("/search");
         alert("successfully found!!!");
     }
         else {
@@ -55,7 +55,7 @@ function auth_time() {
     var day = document.getElementById("time").value;
 
     if(day != " " && (day > 0 && day < 6) && Number.isInteger(parseInt(day)) == true) {
-        window.location.assign("search.html");
+        // window.location.assign("/search");
         alert("successfully found!!!");
     }
     else if(parseInt(day) <= 0 || parseInt(day) >= 6) {
@@ -68,7 +68,7 @@ function auth_name() {
 
     if(coursename != " " && coursename.charCodeAt() > 255)
     {
-        window.location.assign("search.html");
+        // window.location.assign("/");
         alert("successfully found!!!");
     }
     else {
@@ -81,7 +81,7 @@ function auth_teachername() {
     var instructorname = document.getElementById("instructorname").value;
 
     if(instructorname != " " && instructorname.charCodeAt() > 255) {
-        window.location.assign("search.html");
+        // window.location.assign("/search");
         alert("successfully found!!!");
     }
     else {
