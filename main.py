@@ -17,6 +17,8 @@ conn = mc.connect(host=import_data.get('database', {}).get('host', ''),
                   passwd=import_data.get('database', {}).get('password', ''),
                   database=import_data.get('database', {}).get('database', ''))
 
+sid = ""
+
 # login
 @app.route("/")
 def homepage():
@@ -34,14 +36,17 @@ def checklogin():
     
     cursor.execute(query1)
     result = cursor.fetchall()
+    print(result)
 
     if len(result) == 1:
+        sid = UN
         cursor.close()
         return redirect("/search")
     else:
         cursor.close()
         return redirect ("/")
     
+
 # search
 @app.route("/search")
 def searchpage(): 
@@ -54,30 +59,44 @@ def search():
     # no select boxes: no need to use the join method
     cursor = conn.cursor()
 
-    CODE = request.form.get('code')
-    DAY = request.form.get('day')
-    CNAME = request.form.get('coursename')
-    INAME = request.form.get('instructorname')
+    CODE = request.form.get('Code')
+    DAY = request.values.get('Day')
+    CNAME = request.form.get('Coursename')
+    INAME = request.form.get('Instructorname')
+    print(CODE, DAY, CNAME, INAME)
 
     query = 'SELECT * FROM course WHERE '
+    print("before query")
 
     # print out course table
-    if(CODE != ""):
+    if(CODE):
+        print("cond1")
         query += 'course_id="{code}"'.format(code=CODE)
 
-    if(DAY != ""):
+    if(DAY):
+        print("cond2")
         query += 'day="{day}"'.format(day=DAY)
     
-    if(CNAME != ""):
+    if(CNAME):
+        print("cond3")
         query += 'course_name="%{cname}%"'.format(cname=CNAME)
 
-    if(INAME != ""):
+    if(INAME):
+        print("cond4")
         query += 'instructor_name="%{iname}%"'.format(iname=INAME)
     
     query += ';'
-    cursor.execute(query)
-    result = cursor.fetchall()
+    print(query)
+    # cursor.execute(query)
+    # result = cursor.fetchall()
+    # if(len(result) == 1):
+        # print(result)
+    # else:
+        # print("No results found")+
+        
+    return redirect("/search")
 # follow
+
 
     # 
 
