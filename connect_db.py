@@ -1,6 +1,10 @@
 import mysql.connector
-import yaml
-from init import Student, Courses
+import yaml, os
+from flask import Flask, request, render_template, redirect
+import init
+
+currentlocation = os.path.dirname(os.path.abspath(__file__))
+app = Flask(__name__)
 
 def load(filename="config.yml"):
     with open(filename, "r", encoding="utf-8") as config_file:
@@ -8,7 +12,7 @@ def load(filename="config.yml"):
 
 import_data = load()
 #建立資料庫連線
-connect = mysql.connector.connect(
+connectServer = mysql.connector.connect(
     host=import_data.get('database',{}).get('host',''),
     port=import_data.get('database',{}).get('port',''),
     user=import_data.get('database',{}).get('user',''),
@@ -16,43 +20,37 @@ connect = mysql.connector.connect(
     database=import_data.get('database',{}).get('database',''),
 )
 
-# 想查詢的 query 指令
-# query = "SELECT * FROM people WHERE ... '{}%'.".format(my_head)
+@app.route("/")
+def homepage():
+    return render_template("index.html")
 
-# 執行查詢
-# cur = connect.cursor()
-# cur.execute() #資料上傳位置
-# results = "1";
+@app.route("/",methods = ["POST"])
+def checklogin():
+    UN = request.form.get('Username')
+    PW = request.form.get('Password')
 
-def student_data(SID):
-    cur = connect.cursor()
-    cur.execute("SELCT * FROM student WHERE SID=%s;", (SID,))
-    result = cur.fetchone()
+    curser = connectServer.cursor()
+    query1 = 'SELECT * FROM Student WHERE S_ID = "{un}" AND S_pwd= "{pw}";'.format(un=UN, pw=PW)
+
+    curser.execute(query1) #建立一個 游標對象
+    rows = curser.fetchall()
     
-    
-    if result:
-        student = Student(S_ID=result[0], Name=result[1], Ttl_Credit=result[2], dept=result[3])
-        cur.close()
-        return student
+    if len(rows) == 1:
+        global student_data 
+        student_data = init.Student(rows[0][0], rows[0][1], rows[0][2], rows[0][3], rows[0][4])
+        excalibur = student_data.get_student_data()
+        
+        # print(excalibur)
+        return redirect("/search") 
     else:
-        cur.close()
-        return None
-
-def course_data(course_id):
-    cur = connect.cursor()
-    cur.execute("SELECT * FROM course WHERE course_id=%s", (course_id,))
-    result = cur.fetchone()
+        return redirect
     
-    if result:
-        course = Courses(Course_ID=result[0], Course_Name=result[1], Course_Description=result[2], Course_Credit=result[3])
-        cur.close()
-        return course
-    else:
-        cur.close()
-        return None
+@app.route("/search")
+def searchpage():
+    print(student_data.get_student_data())
+    return render_template("/search.html",student=student_data.name)
 
 
-# # 取得並列出所有查詢結果
-#     for (description, ) in cur.fetchall():
-#         results += "<p>{}</p>".format(description)
-#     return results
+
+if __name__ == "__main__":
+    app.run(debug=True)

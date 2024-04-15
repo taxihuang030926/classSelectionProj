@@ -1,0 +1,25 @@
+section{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+}
+
+table,th,td{
+    table-layout: fixed;
+    width: 42px;
+    height: 20px;
+    margin-left: 0;
+    padding: 5px;
+    text-align: center;
+    border: 2px solid #000000;
+    border-collapse: collapse;
+}
+
+td:first-child{
+    width: 20px;
+}
+
+td:not(:first-child)
+{
+    width: 42px;
+}

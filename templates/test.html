@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>動態表格</title>
+<style>
+    .popup-table {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+</style>
+</head>
+<body>
+
+<button onclick="showTable()">顯示表格</button>
+
+<div id="tableContainer" class="popup-table">
+    <h2>資料庫表格</h2>
+    <table id="dynamicTable" border="1">
+    <!-- 這裡將由JavaScript動態生成表格內容 -->
+    <tr><th>名稱</th><th>類別</th><th>價格</th></tr>
+    {% for item in data %}
+    <tr>
+        <td>{{ item['name'] }}</td>
+        <td>{{ item['category'] }}</td>
+        <td>{{ item['price'] }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+
+<script>
+function showTable() {
+    var tableContainer = document.getElementById("tableContainer");
+    tableContainer.style.display = "block";
+}
+</script>
+
+</body>
+</html>
