@@ -65,7 +65,7 @@ def search():
     INAME = request.form.get('Instructorname')
     print(CODE, DAY, CNAME, INAME)
 
-    query = 'SELECT * FROM course WHERE '
+    query = 'SELECT * FROM courses WHERE '
     print("before query")
 
     # print out course table
@@ -77,24 +77,21 @@ def search():
         print("cond2")
         query += 'day="{day}"'.format(day=DAY)
     
-    if(CNAME):
-        print("cond3")
-        query += 'course_name="%{cname}%"'.format(cname=CNAME)
-
-    if(INAME):
-        print("cond4")
-        query += 'instructor_name="%{iname}%"'.format(iname=INAME)
+    if not (CODE or DAY or CNAME or INAME):
+        query += '""'
     
     query += ';'
     print(query)
-    # cursor.execute(query)
-    # result = cursor.fetchall()
+    cursor.execute(query)
+    result = cursor.fetchall()
+    print(result)
     # if(len(result) == 1):
         # print(result)
     # else:
-        # print("No results found")+
+        # print("No results found")
         
-    return redirect("/search")
+    return render_template("search.html", courses=result)
+
 # follow
 
 

@@ -86,9 +86,20 @@ section{
     font-family: Arial;
 }
 
+.container {
+    display: flex;
+    ;
+}
+
+.selected-table {
+    width: 42px;
+    height: 20px;
+    margin-left: 0;
+    padding: 5px;
+}
+
 table,th,td{
     table-layout: fixed;
-    width: 42px;
     height: 20px;
     margin-left: 0;
     padding: 5px;
@@ -97,11 +108,15 @@ table,th,td{
     border-collapse: collapse;
 }
 
-td:first-child{
+.search-table {
+    margin-left: 30px;
+    padding: 5px;
+}
+
+.selected-table :first-child{
     width: 20px;
 }
 
-td:not(:first-child)
-{
+.selected-table :not(:first-child) {
     width: 42px;
 }
