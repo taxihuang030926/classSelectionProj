@@ -8,5 +8,7 @@ insert into Department(Dept_Name, Building) values("航太", "工學");
 insert into Department(Dept_Name, Building) values("國貿", "商學");
 insert into Department(Dept_Name, Building) values("電機", "資電");
 insert into Department(Dept_Name, Building) values("中文", "人社");
+insert into Department(Dept_Name, Building) values("通識", NULL);
+insert into Department(Dept_Name, Building) values("外語", NULL);
 
 select * from Department;
