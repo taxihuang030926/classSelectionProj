@@ -85,11 +85,7 @@ def search():
     cursor.execute(query)
     result = cursor.fetchall()
     print(result)
-    # if(len(result) == 1):
-        # print(result)
-    # else:
-        # print("No results found")
-        
+    
     return render_template("search.html", courses=result)
 
 # follow
