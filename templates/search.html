@@ -190,11 +190,16 @@
                 <td>{{course[1]}}</td>
                 <td>{{course[6]}}</td>
                 <td>{{course[5]}}</td>
+                
                 <td>
-                    {for cresult in cresults}
-                    {{course[7]}}
-
+                    {% for cresult in cresults %}
+                        {% if cresult[0] == course[0] %}
+                             ({{cresult[8]}}) {{cresult[7]}},
+                        {% endif %}
+                        
+                    {% endfor %}
                 </td>
+                
                 <td>{{course[9]}}</td>
                 <td><button>選課</button></td>
             </tr>

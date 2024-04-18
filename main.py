@@ -107,17 +107,37 @@ def search():
             print("cond4")
             query += ' AND courses.instructor LIKE "%{iname}%"'.format(iname=INAME)
 
-    if not (CODE or DAY or CNAME or INAME):
+    if not ((CODE or DAY or CNAME or INAME) and (SC == "on" or SD == "on" or SCN == "on" or SI == "on")):
         query += '""'
     else:
-        cursor.execute(query + ' AND Course_Session.Course_ID=Courses.Course_ID ORDER BY Course_Session.Session_ID;')
-        cresult = cursor.fetchall()
         query += ' AND Course_Session.Course_ID=Courses.Course_ID AND Course_Session.Session_ID LIKE "%-1%" ORDER BY Course_Session.Session_ID '
     
     query += ';'
     print(query)
     cursor.execute(query)
     result = cursor.fetchall()
+    cquery = 'SELECT courses.*, Course_Session.Session_Day, Course_Session.Session_RTime, course_session.Classroom,course_session.Session_ID FROM Courses, Course_Session WHERE'
+    print("result: ")
+    print(result)
+    if len(result) != 0:
+        for i in result:
+            if i :
+                print("hi i is exe")
+                if(result.index(i) == 0):
+                    cquery += ' ('
+                cquery += ' courses.course_id="{code}"'.format(code=i[0])
+
+            if result.index(i) != len(result) - 1:
+                cquery += ' OR'
+            else:
+                cquery += ') AND Course_Session.Course_ID=Courses.Course_ID;'
+    else:
+        cquery += '"";'
+        
+
+    print("cq: " + cquery)
+    cursor.execute(cquery)
+    cresult = cursor.fetchall()
     print(result)
     print("cresult: ")
     print(cresult)
