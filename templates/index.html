@@ -1,21 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-tw">
 <head>
-<<<<<<< HEAD
     <link rel="stylesheet" href="/static/style.css">
-=======
-    <link rel="stylesheet" href="style.css">
->>>>>>> 53c8d8db4fa1f0a7dbb1dbf0dcd4de2468db31da
     <meta charset="UTF-8">
     <title>選課系統登錄頁面</title>
+</head>
 <body>
 <div class="topContent">
-<<<<<<< HEAD
-    <img src="{{url_for('static', filename='/imgs/ccu.png')}}" height="60px">
-=======
-    <img src="imgs/pic1.jpg" height="60px">
->>>>>>> 53c8d8db4fa1f0a7dbb1dbf0dcd4de2468db31da
-    <span class="banner1" style="font-size: 30px">逢甲大學選課系統</span>
+    <div>
+        <img name="ccu-logo" src="{{url_for('static', filename='imgs/ccu.png')}}" height="60px" alt="ccu-logo">
+        <span class="banner1" style="font-size: 30px">逢甲大學選課系統</span>
+    </div>
         <div class="catalog">
                     <a href="https://coursesearch03.fcu.edu.tw/main.aspx?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTIyNjE4NTJ9.Z1_V9AnBlvPTTaTJoVHh6HLF5F9rAstRP1Hd2WLlngM">
                         課程檢索系統
@@ -63,7 +58,7 @@
 </div>
 <div class="leftContent">
     <fieldset>
-<<<<<<< HEAD
+        
         <form method="POST">
             <legend> 登入(Login) </legend>
             <div class="input-box">
@@ -81,27 +76,6 @@
             </div>
             <input type="submit" value="登入" name="Submit">
         </form>
-=======
-        <legend> 登入(Login) </legend>
-        <label>帳號 :</label>
-        <div class="input-box">
-            <form method="POST">
-            <input type="text" maxlength="8" palceholder="Username", name="Usernamme" required></form>
-        </div>
-        <label>密碼 :</label>
-        <div class="input-box">
-            <form method="POST">
-                <input type="password" palceholder="Password", name="Password" required></form>
-        </div>
-        <div class="remember-forget">
-            <lable><input type="checkbox"> Remember me</lable>
-            <div>
-                <a href="https://netid.fcu.edu.tw/">忘記密碼</a>
-            </div>
-        </div>
-
-        <button class="btn" class="btn" onclick="location.href='#'">Login</button>
->>>>>>> 53c8d8db4fa1f0a7dbb1dbf0dcd4de2468db31da
 
 <!--        <script type="text/javascript">-->
 <!--            function LOGIN(){-->

@@ -1,5 +1,7 @@
+s_id=""
+
+
 class Student:
-    
     def __init__(self, S_ID, Name, Ttl_Credit, S_pwd, dept):
         self.sid = S_ID
         self.name = Name
@@ -8,7 +10,7 @@ class Student:
         self.dept = dept
                 
     def get_student_data(self):
-        return " S_ID: {}, Name :{}, Total Credit: {}, Dept: {}".format(self.sid, self.name, self.credit, self.dept)
+        return " SID: {}, Name :{}, Total Credit: {}, Dept: {}".format(self.sid, self.name, self.credit, self.dept)
     
 
 class Courses:
@@ -21,7 +23,7 @@ class Courses:
         
     def get_class_data(self):
         return " Class_ID: {}, Class_Name :{}, Dept: {}, Desc: {}, Credit".format(self.ID, self.Name, self.dept, self.Description, self.Credit)
-    
+
 class Time_slot:
     def __init__(self, TS_ID, Session, Course_ID):
         self.TS_ID = TS_ID
@@ -59,106 +61,107 @@ class Department:
     
 class Classroom:
     def __init__(self, Room_number, Capacity, Building):
-        self.RoomNumber = Room_number
+        self.Room_number = Room_number
         self.Capacity = Capacity
         self.Building = Building
         
     def get_Classroom(self):
-        return "Room_Number: {}, Capacity: {}, Building: {}".format(self.RoomNumber, self.Capacity, self.Building)
-    
-
-
-# def student(SID, connectServer):
-#     cur = connectServer.cursor()
-#     cur.execute("SELECT * FROM student WHERE S_ID=%s;", (SID,))
-#     result = cur.fetchall()
-#     if result:
-#         student = Student(S_ID=result[0][0], Name=result[0][1], Ttl_Credit=result[0][2], S_pwd=result[0][3], dept=result[0][4])
-#         cur.close()
-#         return student
-#     else:
-#         cur.close()
-#         return None
-
-# def courses(C_ID, connectServer):
-#     cur = connectServer.cursor()
-#     cur.execute("SELECT * FROM course WHERE course_id=%s", (C_ID,))
-#     result = cur.fetchall()
-    
-#     if result:
-#         course = Courses(Course_ID=result[0][0], Course_Name=result[0][1], dept=result[0][2], Course_Description=result[0][3], Course_Credit=result[0][4])
-#         cur.close()
-#         return course
-#     else:
-#         cur.close()
-#         return None
-
-# def time_slot(connectServer):
-#     cur = connectServer.cursor()
-#     cur.execute("SELECT * FROM times_slot")
-#     results = cur.fetchall()
-
-#     times_table_list = []
-#     for result in results:
-#         time_entry = Time_slot(TS_ID=result[0][0], Session=result[0][1], Course_ID=result[0][2])
-#         times_table_list.append(time_entry)
-
-#     cur.close(connectServer)
-#     return times_table_list
-
-
-# def section(connectServer):
-#     cur = connectServer.cursor()
-#     cur.execute("SELECT * FROM Section")
-#     results = cur.fetchall()
-    
-#     Section_list = []
-#     for result in results:
-#         section_entry = Section(Sec_ID=result[0][0], Semester=result[0][1], Year=result[0][2]),
-#         Section_list.append(section_entry)
+        return "Room_Number: {}, Capacity: {}, Building: {}".format(self.Room_number, self.Capacity, self.Building)
         
-#     cur.close()
-#     return Section_list
 
 
-# def instructor(T_ID, connectServer):
-#     cur = connectServer.cursor()
-#     cur.execute("SELECT * FROM Instructor WHERE T_ID=%s",(T_ID,))
-#     result = cur.fetchall()
+def student(SID, connectServer):
+
+    cur = connectServer.cursor()
+    cur.execute("SELECT * FROM student WHERE SID=%s;", (SID,))
+    result = cur.fetchone()
+    s_id = result[0]
+    if result:
+        student = Student(S_ID=result[0], Name=result[1], Ttl_Credit=result[2], S_pwd=result[3], dept=result[4])
+        cur.close()
+        return student, s_id
+    else:
+        cur.close()
+        return None, s_id
+
+def courses(C_ID, connectServer):
+    cur = connectServer.cursor()
+    cur.execute("SELECT * FROM course WHERE course_id=%s", (C_ID,))
+    result = cur.fetchone()
     
-#     if result:
-#         instructor = Instructor(I_ID=result[0][0], Name=result[0][1], Dept=result[0][2])
-#         cur.close()
-#         return instructor
-#     else:
-#         cur.close()
-#         return None
+    if result:
+        course = Courses(Course_ID=result[0], Course_Name=result[1], dept=result[2], Course_Description=result[3], Course_Credit=result[4])
+        cur.close()
+        return course
+    else:
+        cur.close()
+        return None
+
+def time_slot(connectServer):
+    cur = connectServer.cursor()
+    cur.execute("SELECT * FROM times_slot")
+    results = cur.fetchall()
+
+    times_table_list = []
+    for result in results:
+        time_entry = Time_slot(TS_ID=result[0], Session=result[1], Course_ID=result[2])
+        times_table_list.append(time_entry)
+
+    cur.close()
+    return times_table_list
+
+
+def section(connectServer):
+    cur = connectServer.cursor()
+    cur.execute("SELECT * FROM Section")
+    results = cur.fetchall()
     
-# def department(connectServer):
-#     cur = connectServer.cursor()
-#     cur.execute("SELECT * FROM Department")
-#     results = cur.fetchall()
+    Section_list = []
+    for result in results:
+        section_entry = Section(Sec_ID=result[0], Semester=result[1], Year=result[2]),
+        Section_list.append(section_entry)
 
-#     department_list = []
-#     for result in results:
-#         department = Department(Dept_Name=result[0][0], Building=result[0][1])
-#         department_list.append(department)
+    cur.close()
+    return Section_list
 
-#     cur.close()
-#     return department_list
+def instructor(T_ID, connectServer):
+    cur = connectServer.cursor()
+    cur.execute("SELECT * FROM Instructor WHERE T_ID=%s",(T_ID,))
+    result = cur.fetchone()
+    
+    if result:
+        instructor = Instructor(I_ID=result[0], Name=result[1], Dept=result[2])
+        cur.close()
+        return instructor
+    else:
+        cur.close()
+        return None
+    
+def department(connectServer):
+    cur = connectServer.cursor()
+    cur.execute("SELECT * FROM Department")
+    results = cur.fetchall()
+
+    department_list = []
+    for result in results:
+        department = Department(Dept_Name=result[0], Building=result[1])
+        department_list.append(department)
+
+    cur.close()
+    return department_list
 
 
-# def classroom(connectServer):
-#     cur = connectServer.cursor()
-#     cur.execute("SELECT * FROM Classroom")
-#     results = cur.fetchall()
+def classroom(connectServer):
+    cur = connectServer.cursor()
+    cur.execute("SELECT * FROM Classroom")
+    results = cur.fetchall()
+    print(results)
 
-#     classroom_list = []
-#     for result in results:
-#         # 假设 Classroom 类是用来表示教室的类
-#         classroom = Classroom(Room_Number=result[0][0], Capacity=result[0][1], Building=result[0][2])
-#         classroom_list.append(classroom)
+    classroom_list = []
+    for result in results:
+        classroom = Classroom(result[0], result[1], result[2])
+        print(classroom.get_Classroom())
+        classroom_list.append(classroom)
 
-#     cur.close()
-#     return classroom_list
-
+    cur.close()
+    return classroom_list
