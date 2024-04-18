@@ -11,42 +11,38 @@
     <header>依輸入條件查詢</header>
 </div>
 <div class="require">
-
+    
     <form method="POST">
+        <input type="checkbox" name="Select-Code" id="select-code">
         <lable> 選課代號 : </lable>
         <input type="text" name="Code" id = "code" maxlength="4" placeholder="請輸入代號">
-        <input type="submit" onclick="auth_code()">
         <br>
-    </form>
 
-    <form method="POST">
+        <input type="checkbox" name="Select-Day" id="select-day">
         <lable> 星期 : </lable>
         <select name="Day" id="day">
-            <option value="Mon">星期一</option>
-            <option value="Tue">星期二</option>
-            <option value="Wed">星期三</option>
-            <option value="Thu">星期四</option>
-            <option value="Fri">星期五</option>
+            <option value="Monday">星期一</option>
+            <option value="Tuesday">星期二</option>
+            <option value="Wednesday">星期三</option>
+            <option value="Thursday">星期四</option>
+            <option value="Friday">星期五</option>
 
         </select>
         <!-- <input type="number"  id="time" maxlength="4" placeholder="textEntery" min="1" max="5" required> -->
-        <input type="submit" onclick="auth_time()">
         <br>
-    </form>
 
-    <form method="POST">
+        <input type="checkbox" name="Select-Coursename" id="select-coursename">
         <lable> 科目名稱 : </lable>
         <input type="text" name="Coursename" id="coursename" maxlength="20" placeholder="請輸入名稱">
-        <input type="submit" onclick="auth_name()">
         <br>
-    </form>
 
-    <form method="POST">
+
+        <input type="checkbox" name="Select-Instructorname" id="select-instructorname">
         <lable> 開課教師姓名 : </lable>
-        <input type="text" name="Instructorname" id="instructorname" maxlength="4" placeholder="請輸入姓名
-        ">
-        <input type="submit" onclick="auth_teachername()">
+        <input type="text" name="Instructorname" id="instructorname" maxlength="4" placeholder="請輸入姓名">
         <br>
+        
+        <input type="submit" onclick="auth()">
     </form>
 </div>
 </body>
@@ -192,10 +188,14 @@
             <tr>
                 <td>{{course[0]}}</td>
                 <td>{{course[1]}}</td>
-                <td>{{course[4]}}</td>
-                <td>{{course[3]}}</td>
-                <td>hi time</td>
-                <td>ola classroom</td>
+                <td>{{course[6]}}</td>
+                <td>{{course[5]}}</td>
+                <td>
+                    {for cresult in cresults}
+                    {{course[7]}}
+
+                </td>
+                <td>{{course[9]}}</td>
                 <td><button>選課</button></td>
             </tr>
             {% endfor %}
