@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <link rel="stylesheet" href="/static/search.css">
+    <meta charset="UTF-8">
+    <title>逢甲大學選課系統</title>
+</head>
+<body>
+<script src="{{url_for('static', filename='button.js')}}"></script>
+<div class="fcol">
+    <header>依輸入條件查詢</header>
+</div>
+<div class="require">
+    
+    <form method="POST">
+        <input type="checkbox" name="Select-Code" id="select-code">
+        <lable> 選課代號 : </lable>
+        <input type="text" name="Code" id = "code" maxlength="4" placeholder="請輸入代號">
+        <br>
+
+        <input type="checkbox" name="Select-Day" id="select-day">
+        <lable> 星期 : </lable>
+        <select name="Day" id="day">
+            <option value="Monday">星期一</option>
+            <option value="Tuesday">星期二</option>
+            <option value="Wednesday">星期三</option>
+            <option value="Thursday">星期四</option>
+            <option value="Friday">星期五</option>
+
+        </select>
+        <!-- <input type="number"  id="time" maxlength="4" placeholder="textEntery" min="1" max="5" required> -->
+        <br>
+
+        <input type="checkbox" name="Select-Coursename" id="select-coursename">
+        <lable> 科目名稱 : </lable>
+        <input type="text" name="Coursename" id="coursename" maxlength="20" placeholder="請輸入名稱">
+        <br>
+
+
+        <input type="checkbox" name="Select-Instructorname" id="select-instructorname">
+        <lable> 開課教師姓名 : </lable>
+        <input type="text" name="Instructorname" id="instructorname" maxlength="4" placeholder="請輸入姓名">
+        <br>
+        
+        <input type="submit" onclick="auth()">
+    </form>
+</div>
+</body>
+<div id="table-container" class="container">
+    <div>
+        <table class="selected-table">
+            <tr>
+                <td>0</td>
+                <td>Mon</td>
+                <td>Tue</td>
+                <td>Wed</td>
+                <td>Thu</td>
+                <td>Fri</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1324</td>
+                <td></td>
+                <td>1313</td>
+                <td></td>
+                <td>0811</td>
+            </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr >
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+        </table>
+    </div>
+
+    <div>
+        {% if courses %}
+        <table class="search-table">
+            <tr>
+                <td>選課代號</td>
+                <td>課程名稱</td>
+                <td>學分</td>
+                <td>開課教師</td>
+                <td>時間</td>
+                <td>教室</td>
+                <td>選課</td>
+            </tr>
+            {% for course in courses %}
+            <tr>
+                <td>{{course[0]}}</td>
+                <td>{{course[1]}}</td>
+                <td>{{course[6]}}</td>
+                <td>{{course[5]}}</td>
+                <td>
+                    {for cresult in cresults}
+                    {{course[7]}}
+
+                </td>
+                <td>{{course[9]}}</td>
+                <td><button>選課</button></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+
+</div>
+</html>

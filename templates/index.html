@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-tw">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
     <meta charset="UTF-8">
     <title>選課系統登錄頁面</title>
+</head>
 <body>
 <div class="topContent">
-    <img src="imgs/pic1.jpg" height="60px">
-    <span class="banner1" style="font-size: 30px">逢甲大學選課系統</span>
+    <div>
+        <img name="ccu-logo" src="{{url_for('static', filename='imgs/ccu.png')}}" height="60px" alt="ccu-logo">
+        <span class="banner1" style="font-size: 30px">逢甲大學選課系統</span>
+    </div>
         <div class="catalog">
                     <a href="https://coursesearch03.fcu.edu.tw/main.aspx?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3MTIyNjE4NTJ9.Z1_V9AnBlvPTTaTJoVHh6HLF5F9rAstRP1Hd2WLlngM">
                         課程檢索系統
@@ -55,37 +58,23 @@
 </div>
 <div class="leftContent">
     <fieldset>
-        <legend> 登入(Login) </legend>
-        <label>帳號 :</label>
-        <div class="input-box">
-            <form method="POST">
-            <form method="POST">
-                <legend> 登入(Login) </legend>
-                <div class="input-box">
-                    <input type="text" maxlength="8" palceholder="NID", name="Username" required>
+        <form method="POST">
+            <legend> 登入(Login) </legend>
+            <div class="input-box">
+                <input type="text" maxlength="8" palceholder="NID", name="Username" required>
+            </div>
+            <label>密碼 :</label>
+            <div class="input-box">
+                <input type="password" palceholder="Password", name="Password" required>
+            </div>
+            <div class="remember-forget">
+                <label><input type="checkbox"> Remember me</label>
+                <div>
+                    <a href="https://registration.fcu.edu.tw/%E9%A6%96%E9%A0%81-2/%E6%9C%8D%E5%8B%99%E5%B0%8D%E8%B1%A1/qa/">忘記密碼</a>
                 </div>
-                <label>密碼 :</label>
-                <div class="input-box">
-                    <input type="password" palceholder="Password", name="Password" required>
-                </div>
-                <div class="remember-forget">
-                    <label><input type="checkbox"> Remember me</label>
-                    <div>
-                        <a href="https://registration.fcu.edu.tw/%E9%A6%96%E9%A0%81-2/%E6%9C%8D%E5%8B%99%E5%B0%8D%E8%B1%A1/qa/">忘記密碼</a>
-                    </div>
-                </div>
-                <input type="submit" value="登入" name="Submit">
-            </form>
-
-<!--        <script type="text/javascript">-->
-<!--            function LOGIN(){-->
-<!--                document.getElementById("btn").addEventListener("click",LOGIN)-->
-<!--            }-->
-<!--        </script>-->
-<!--        <div class="register-link">-->
-<!--            <p>Don't have an account? <a href="#">Register-->
-<!--            </a></p>-->
-<!--        </div>-->
+            </div>
+            <input type="submit" value="登入" name="Submit">
+        </form>
     </fieldset>
 </div>
 </body>

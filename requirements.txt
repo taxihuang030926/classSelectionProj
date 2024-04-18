@@ -2,3 +2,4 @@ flask
 PyYAML
 mysql-connector
 python-dotenv
+
