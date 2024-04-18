@@ -4,7 +4,7 @@ CREATE TABLE Department(
 );
 
 insert into Department(Dept_Name, Building) values("資訊", "資電");
-insert into Department(Dept_Name, Building) values("航太", "科航");
+insert into Department(Dept_Name, Building) values("航太", "工學");
 insert into Department(Dept_Name, Building) values("國貿", "商學");
 insert into Department(Dept_Name, Building) values("電機", "資電");
 insert into Department(Dept_Name, Building) values("中文", "人社");
