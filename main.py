@@ -145,9 +145,9 @@ def search():
     return render_template("search.html", courses=result, cresults=cresult)
 
 # enroll and slot 
-@app.route("/enroll")
-def enrollmentpage():
-    return render_template("enrollment.html")
+@app.route("/search", methods = ["POST"])
+def enrollment():
+    return render_template("search.html")
 
 
 if __name__ == "__main__":
