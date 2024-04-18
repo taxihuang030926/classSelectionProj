@@ -17,8 +17,6 @@ conn = mc.connect(host=import_data.get('database', {}).get('host', ''),
                   passwd=import_data.get('database', {}).get('password', ''),
                   database=import_data.get('database', {}).get('database', ''))
 
-sid = ""
-
 # login
 @app.route("/")
 def homepage():
@@ -134,3 +132,4 @@ def enrollmentpage():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
