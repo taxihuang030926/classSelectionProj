@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
+    <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/search.css">
     <meta charset="UTF-8">
     <title>逢甲大學選課系統</title>
 </head>
 <body>
+<div class="topContent">
+    <div>
+        <img name="ccu-logo" src="{{url_for('static', filename='imgs/ccu.png')}}" height="60px" alt="ccu-logo">
+        <span class="banner1" style="font-size: 30px">甲甲大學選課系統</span>
+    </div>
+    <div class="catalog">
+        <a href="http://127.0.0.1:5000/search">
+            課程搜尋
+        </a>&nbsp
+        <a href="http://127.0.0.1:5000/enrolledtable">
+            已選詳細課表
+        </a>&nbsp
+    </div>
+</div>
 <script src="{{url_for('static', filename='button.js')}}"></script>
 <div class="fcol">
     <header>依輸入條件查詢</header>
@@ -59,116 +74,116 @@
             </tr>
             <tr>
                 <td>1</td>
-                <td>1324</td>
                 <td></td>
-                <td>1313</td>
                 <td></td>
-                <td>0811</td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
-                <tr>
-                    <td>2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr >
-                    <td>6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>13</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>14</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+            <tr>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr >
+                <td>6</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         </table>
     </div>
 
@@ -186,22 +201,39 @@
             </tr>
             {% for course in courses %}
             <tr>
-                <td>{{course[0]}}</td>
-                <td>{{course[1]}}</td>
-                <td>{{course[6]}}</td>
-                <td>{{course[5]}}</td>
-                
-                <td>
-                    {% for cresult in cresults %}
-                        {% if cresult[0] == course[0] %}
-                             ({{cresult[8]}}) {{cresult[7]}},
-                        {% endif %}
+                <form method="POST">
+                    <td>{{course[0]}}</td>
+                    <td>{{course[1]}}</td>
+                    <td>{{course[6]}}</td>
+                    <td>{{course[5]}}</td>
+                    
+                    <td>
+                        {% for cresult in cresults %}
+                            {% if cresult[0] == course[0] %}
+                                ({{cresult[8]}}) {{cresult[7]}},
+                            {% endif %}
+                            
+                        {% endfor %}
+                    </td>
+                    
+                    <td>{{course[9]}}</td>
+                    
+                    <td>
+                        <!-- 
+                            if 有名額: 
+                                if 已選: 
+                                    btn -> 退選; 
+                                else:
+                                    btn -> 加選;
+                                加選; 
+                            elif 沒名額:  
+                                btn -> 關注;  # 排隊抽籤
+                        -->
+                        <form method>
+                        <input type="submit", name="Enroll", value="選課" >
                         
-                    {% endfor %}
-                </td>
-                
-                <td>{{course[9]}}</td>
-                <td><button>選課</button></td>
+                    </td>
+                </form>
             </tr>
             {% endfor %}
         </table>
