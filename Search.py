@@ -65,6 +65,9 @@ def osearch(conn):
     print(f"result: {result}\n")
     if len(result) != 0:
         for i in result:
+            print(f'i.code: {i[0]}')
+
+        for i in result:
             if i :
                 if(result.index(i) == 0):
                     cquery += ' ('
@@ -83,5 +86,6 @@ def osearch(conn):
     cresult = cursor.fetchall()
     print("cresult: ")
     print(f"{cresult}\n")
-    
+    # if len(result) == 0:
+    #     return 
     return render_template("search.html", courses=result, cresults=cresult)

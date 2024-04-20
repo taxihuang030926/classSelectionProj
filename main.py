@@ -1,14 +1,17 @@
 from flask import Flask, request, render_template, redirect
 import yaml
 import mysql.connector as mc
-import init, Search #, Enrollment
+from init import student_data, courses_data, time_slot_data, course_session_data, enrolled_table_data
+import init
+import Search #, Enrollment
 
 def load(filename="config.yml"):
     with open(filename, "r", encoding="utf-8") as config_file:
         return yaml.load(config_file, Loader=yaml.Loader)
     
 import_data = load()
-
+loggedINStudent = ""
+loggedIN = False
 app = Flask(__name__)
 
 conn = mc.connect(host=import_data.get('database', {}).get('host', ''),
@@ -38,6 +41,8 @@ def checklogin():
 
     if len(result) == 1:
         sid = UN
+        loggedInStudent = init.student_data(sid, conn)
+        print(f"logged in student: {loggedInStudent.Dept}\n")
         cursor.close()
         return redirect("/search")
     else:
@@ -59,11 +64,11 @@ def search():
 def enrollment():
     
     # return Enrollment.oenroll(conn)
-    return render_template("search.html")
+    return 
 
 @app.route("/search", methods = ["POST"])
 def slot():
-    return render_template("search.html")
+    return 
 
 @app.route("/enrolledtable")
 def enrolltable():
