@@ -4,8 +4,8 @@ create table Student(
     Ttl_Credit INT,
     S_pwd VARCHAR(20),
     Dept VARCHAR(20),
+    Grade VARCHAR(8),
     Class VARCHAR(8),
-    foreign key(Dept) references Department(Dept_Name)
 );
 
 insert into Student(S_ID, Name, Ttl_Credit, S_pwd, Dept, Grade, Class) values("D1149711", "do-ning", 0, "dooooning666", "資訊", 2, 2);
