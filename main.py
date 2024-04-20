@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect
 import yaml
 import mysql.connector as mc
-import init, Search 
+import init, Search #, Enrollment
 
 def load(filename="config.yml"):
     with open(filename, "r", encoding="utf-8") as config_file:
@@ -57,6 +57,8 @@ def search():
 # enroll, withdraw and slot 
 @app.route("/search", methods = ["POST"])
 def enrollment():
+    
+    # return Enrollment.oenroll(conn)
     return render_template("search.html")
 
 @app.route("/search", methods = ["POST"])
