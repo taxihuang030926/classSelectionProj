@@ -34,7 +34,7 @@ def checklogin():
     UN = request.form.get('Username')
     PW = request.form.get('Password')
     
-    student = student_data(UN)
+    student = student_data(UN, conn)
     
     query1 = 'SELECT S_ID, S_pwd FROM Student WHERE S_ID=%s AND S_pwd=%s;'
     
