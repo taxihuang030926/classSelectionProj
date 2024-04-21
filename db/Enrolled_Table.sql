@@ -81,7 +81,7 @@ insert into Enrolled_Table(S_ID, S1, S2, S3, S4, S5, S6, S7, S8, S9, S10
                                 , S41, S42, S43, S44, S45, S46, S47, S48, S49, S50
                                 , S51, S52, S53, S54, S55, S56, S57, S58, S59, S60
                                 , S61, S62, S63, S64, S65, S66, S67, S68, S69, S70)
-                    values("D1149711", NULL, NULL, 1312, 1312, NULL, 1314, 1314, 1313, 1313, NULL, 1329, NULL, NULL, NULL, 
+                    values("D1149711", NULL, NULL, 1312, 1312, NULL, 1314, 1314, 1313, 1313, NULL, NULL, NULL, NULL, NULL, 
                                      NULL, NULL, 1313, 1314, NULL, NULL, NULL, NULL, 1311, NULL, NULL, NULL, NULL, NULL, 
                                      1324, 1324, 1324, 1312, NULL, 1323, 1323, 1323, 0811, 0811, 3528, 3528, NULL, NULL,
                                      3044, 3044, 2861, 2861, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
