@@ -23,8 +23,6 @@ insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Cou
 insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(1317, "資料庫系統", "資訊", 1, "二丙", "林明言", 3, 5, 0);
 insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(1321, "資料庫系統", "資訊", 1, "二丁", "葉春秀", 3, 5, 0);
 insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(1323, "互聯網路", "資訊", 0, NULL, "劉宗杰", 3, 5, 0);
-insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(1324, "Web程式設計", "資訊", 0, NULL, "劉明機", 3, 5, 0);
-insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(3320, "大學精進英文(二)中級", "英語綜合班", 1, NULL, "林明洵", 2, 5, 0);
 insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(2911, "德文（一）", "外語", 0, NULL, "游曉嵐", 2, 5, 0);
 insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(2843, "韓文(一)", "外語", 0, NULL, "曲培求", 2, 5, 0);
 insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(2844, "韓文(一)", "外語", 0, NULL, "梁秀慶", 2, 5, 0);
@@ -40,7 +38,4 @@ insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Cou
 insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(2984, "音樂行旅 - 巡訪古典音樂大師", "通識", 0, NULL, "曾韻心", 2, 5, 0);
 insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(3044, "智慧財產之保護與實務", "通識", 0, NULL, "葉德輝", 2, 5, 0);
 insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(2958, "環境教育", "通識", 0, NULL, "葉怡巖", 2, 5, 0);
-insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(3528, "生命起源與生物科技", "通識", 0, NULL, "葉怡巖", 2, 5, 0);
-insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(0811, "當教育大數據遇見AI", "創能", 0, NULL, "劉明機", 2, 5, 0);
-insert into Courses(Course_ID, Course_Name, Dept, Prereq, Class, Instructor, Course_Credit, Capacity, Cur_Ppl) values(1311, "班級活動", "資訊", 1, "二乙", "洪振偉", 0, 5, 0);
 select * from Courses;

@@ -1,13 +1,11 @@
 CREATE TABLE Course_Session (
-    Session_ID varchar(8) primary key,
+    Session_ID VARCHAR(8) primary key,
     Course_ID INT,
     Session_Day VARCHAR(20),
     Session_RTime INT,
     Session_Time INT,
     Classroom VARCHAR(20),
-    Current_Population INT,
-    Population_Limit INT,
-    foreign key(Course_ID) references Courses(Course_ID)
+    foreign key (Course_ID) references Courses(Course_ID)
 );
 
 insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("1308-1", 1308, "Monday", 8, 8, "資電103");
@@ -62,13 +60,6 @@ insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Se
 insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("1323-2", 1323, "Wednesday", 7, 35, "資電234");
 insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("1323-3", 1323, "Wednesday", 8, 36, "資電234");
 
-insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("1324-1", 1324, "Wednesday", 1, 29, "資電234");
-insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("1324-2", 1324, "Wednesday", 2, 30, "資電234");
-insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("1324-3", 1324, "Wednesday", 3, 31, "資電234");
-
-insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("3320-1", 3320, "Friday", 1, 57, "人言503");
-insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("3320-2", 3320, "Friday", 2, 58, "人言503");
-
 insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("2911-1", 2911, "Friday", 6, 62, "語文202");
 insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("2911-2", 2911, "Friday", 7, 63, "語文202");
 
@@ -118,10 +109,3 @@ insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Se
 
 insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("2958-1", 2958, "Wednesday", 8, 36, "學思219");
 insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("2958-2", 2958, "Wednesday", 9, 37, "學思219");
-
-insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("3528-1", 3528, "Wednesday", 11, 39, "學思219");
-insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("3528-2", 3528, "Wednesday", 12, 40, "學思219");
-
-insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("0811-1", 0811, "Wednesday", 9, 37, "圖書212");
-
-insert into Course_Session(Session_ID, Course_ID, Session_Day, Session_RTime, Session_Time, Classroom) values("1311-1", 1311, "Tuesday", 9, 23, "資電411");
