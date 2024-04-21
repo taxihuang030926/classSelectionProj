@@ -38,3 +38,4 @@ function toggleInput(checkboxId, inputId) {
         input.value = '';
     }
 }
+
