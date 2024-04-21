@@ -1,70 +1,70 @@
-import mysql.connector
-import yaml, os
-from flask import Flask, request, render_template, redirect
-import init 
-import add_withdraw
+from flask import Flask, request, render_template, redirect, url_for
+import yaml
+import mysql.connector as mc
+from Search import osearch
+from enrolled_table import getschedlue
+from init import student_data
 
-currentlocation = os.path.dirname(os.path.abspath(__file__))
-app = Flask(__name__)
+UN = ""
 
 def load(filename="config.yml"):
     with open(filename, "r", encoding="utf-8") as config_file:
         return yaml.load(config_file, Loader=yaml.Loader)
 
 import_data = load()
-#建立資料庫連線
-connectServer = mysql.connector.connect(
-    host=import_data.get('database',{}).get('host',''),
-    port=import_data.get('database',{}).get('port',''),
-    user=import_data.get('database',{}).get('user',''),
-    password=import_data.get('database',{}).get('password',''),
-    database=import_data.get('database',{}).get('database',''),
-)
 
+app = Flask(__name__)
+
+conn = mc.connect(host=import_data.get('database', {}).get('host', ''),
+                  port=import_data.get('database', {}).get('port', ''),
+                  user=import_data.get('database', {}).get('user', ''),
+                  passwd=import_data.get('database', {}).get('password', ''),
+                  database=import_data.get('database', {}).get('database', ''))
+
+# login
 @app.route("/")
 def homepage():
     return render_template("index.html")
 
-@app.route("/",methods = ["POST"])
+@app.route("/", methods=["POST"])
 def checklogin():
+    global UN
+    cursor = conn.cursor()
+
     UN = request.form.get('Username')
     PW = request.form.get('Password')
-
-    curser = connectServer.cursor()
-    query1 = 'SELECT * FROM Student WHERE S_ID = "{un}" AND S_pwd= "{pw}";'.format(un=UN, pw=PW)
-
-    curser.execute(query1) #建立一個 游標對象
-    rows = curser.fetchall()
     
-    if len(rows) == 1:
-        global student_data 
-        init.s_id = UN
-        student_data = init.Student(rows[0][0], rows[0][1], rows[0][2], rows[0][3], rows[0][4])
-        excalibur = student_data.get_student_data()
-        
-        # print(excalibur)
-        return redirect("/search") 
+    student = student_data(UN, conn)
+    
+    query1 = 'SELECT S_ID, S_pwd FROM Student WHERE S_ID=%s AND S_pwd=%s;'
+    
+    cursor.execute(query1, (UN, PW))
+    result = cursor.fetchall()
+    print(f"login: {result}\n")
+    
+    schedule_data = getschedlue(conn, UN)
+    
+    cursor.close()
+
+    if len(result) == 1:
+        return redirect(url_for('searchpage', student=student, schedule_data=schedule_data))
     else:
-        return redirect
-    
-@app.route("/search")
+        return redirect("/")
+
+# search
+@app.route('/search', methods=['GET', 'POST'])
 def searchpage():
-    add_withdraw.hoho()
-    print("test: ")
-    for i in init.classroom(connectServer):
-        print((str)(i.Building)+(str)(i.Room_number))
-        
-    print(student_data.get_student_data())
-    return render_template("/search.html",student=student_data.name)
+    student = student_data(UN, conn)
+    result, cresult = osearch(conn)
+    schedule_data = getschedlue(conn, UN)
+    
+    return render_template("search.html", student=student, schedule_data=schedule_data, courses=result, cresults=cresult)
 
-def time_slot():
-    cur = connectServer.cursor()
-    cur.execute("SELECT * FROM times_slot")
-    results = cur.fetchall()
-
-
-print()
+@app.route("/enrolledtable")
+def enrolltable():
+    student = student_data(UN, conn)
+    schedule_data = getschedlue(conn, UN)
+    return render_template("enrolledtable.html", student=student, schedule_data=schedule_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
-
