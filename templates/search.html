@@ -1,58 +1,77 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
+    <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/search.css">
     <meta charset="UTF-8">
     <title>逢甲大學選課系統</title>
 </head>
 <body>
+<div class="topContent">
+    <div>
+        <img name="ccu-logo" src="{{url_for('static', filename='imgs/ccu.png')}}" height="60px" alt="ccu-logo">
+        <span class="banner1" style="font-size: 30px">甲甲大學選課系統</span>
+    </div>
+    <div class="catalog">
+        <a href="http://127.0.0.1:5000/search">
+            課程搜尋
+        </a>&nbsp
+        <a href="http://127.0.0.1:5000/enrolledtable">
+            已選詳細課表
+        </a>&nbsp
+    </div>
+</div>
 <script src="{{url_for('static', filename='button.js')}}"></script>
 <div class="fcol">
     <header>依輸入條件查詢</header>
 </div>
 <div class="require">
-
+    
     <form method="POST">
+        <input type="checkbox" name="Select-Code" id="select-code" onchange="toggleInput('select-code','code')">
         <lable> 選課代號 : </lable>
-        <input type="text" name="Code" id = "code" maxlength="4" placeholder="請輸入代號">
-        <input type="submit" onclick="auth_code()">
+        <input type="text" name="Code" id = "code" maxlength="4" placeholder="請輸入代號" disabled required>
         <br>
-    </form>
 
-    <form method="POST">
+        <input type="checkbox" name="Select-Day" id="select-day" onchange="toggleInput('select-day', 'day')">
         <lable> 星期 : </lable>
-        <select name="Day" id="day">
-            <option value="Mon">星期一</option>
-            <option value="Tue">星期二</option>
-            <option value="Wed">星期三</option>
-            <option value="Thu">星期四</option>
-            <option value="Fri">星期五</option>
+        <select name="Day" id="day" disabled>
+            <option value="Monday">星期一</option>
+            <option value="Tuesday">星期二</option>
+            <option value="Wednesday">星期三</option>
+            <option value="Thursday">星期四</option>
+            <option value="Friday">星期五</option>
 
         </select>
         <!-- <input type="number"  id="time" maxlength="4" placeholder="textEntery" min="1" max="5" required> -->
-        <input type="submit" onclick="auth_time()">
         <br>
-    </form>
 
-    <form method="POST">
+        <input type="checkbox" name="Select-Coursename" id="select-coursename" onchange="toggleInput('select-coursename', 'coursename')">
         <lable> 科目名稱 : </lable>
-        <input type="text" name="Coursename" id="coursename" maxlength="20" placeholder="請輸入名稱">
-        <input type="submit" onclick="auth_name()">
+        <input type="text" name="Coursename" id="coursename" maxlength="20" placeholder="請輸入名稱" disabled >
         <br>
-    </form>
 
-    <form method="POST">
+
+        <input type="checkbox" name="Select-Instructorname" id="select-instructorname" onchange="toggleInput('select-instructorname', 'instructorname')">
         <lable> 開課教師姓名 : </lable>
-        <input type="text" name="Instructorname" id="instructorname" maxlength="4" placeholder="請輸入姓名
-        ">
-        <input type="submit" onclick="auth_teachername()">
+        <input type="text" name="Instructorname" id="instructorname" maxlength="4" placeholder="請輸入姓名" disabled required>
         <br>
+        
+        <input type="submit" onclick="auth()">
+        &nbsp <button class="btn" class="all-btn">所有可選課表</button>
     </form>
+</div>
+<div class="limit-banner">
+    目前學分:  <strong style="color: #f50505">{{student.Ttl_Credit}}</strong>  學分 <br>
+
+    最高學分:  30 學分 <br>
+
+    最低學分:  9  學分
 </div>
 </body>
 <div id="table-container" class="container">
-    <div>
-        <table class="selected-table">
+    <div class="box">
+        <table class="enroll-table">
             <tr>
                 <td>0</td>
                 <td>Mon</td>
@@ -63,118 +82,132 @@
             </tr>
             <tr>
                 <td>1</td>
-                <td>1324</td>
-                <td></td>
-                <td>1313</td>
-                <td></td>
-                <td>0811</td>
+                <td title="{{schedule_data[1]}}">{{schedule_data[1]}}</td>
+                <td title="{{schedule_data[15]}}">{{schedule_data[15]}}</td>
+                <td title="{{schedule_data[29]}}">{{schedule_data[29]}}</td>
+                <td title="{{schedule_data[43]}}">{{schedule_data[43]}}</td>
+                <td title="{{schedule_data[57]}}">{{schedule_data[57]}}</td>
             </tr>
-                <tr>
-                    <td>2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr >
-                    <td>6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>13</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>14</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+            <tr>
+                <td>2</td>
+                <td title="{{schedule_data[2]}}">{{schedule_data[2]}}</td>
+                <td title="{{schedule_data[16]}}">{{schedule_data[16]}}</td>
+                <td title="{{schedule_data[30]}}">{{schedule_data[30]}}</td>
+                <td title="{{schedule_data[44]}}">{{schedule_data[44]}}</td>
+                <td title="{{schedule_data[58]}}">{{schedule_data[58]}}</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td title="{{schedule_data[3]}}">{{schedule_data[3]}}</td>
+                <td title="{{schedule_data[17]}}">{{schedule_data[17]}}</td>
+                <td title="{{schedule_data[31]}}">{{schedule_data[31]}}</td>
+                <td title="{{schedule_data[45]}}">{{schedule_data[45]}}</td>
+                <td title="{{schedule_data[59]}}">{{schedule_data[59]}}</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td title="{{schedule_data[4]}}">{{schedule_data[4]}}</td>
+                <td title="{{schedule_data[18]}}">{{schedule_data[18]}}</td>
+                <td title="{{schedule_data[32]}}">{{schedule_data[32]}}</td>
+                <td title="{{schedule_data[46]}}">{{schedule_data[46]}}</td>
+                <td title="{{schedule_data[60]}}">{{schedule_data[60]}}</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td title="{{schedule_data[5]}}">{{schedule_data[5]}}</td>
+                <td title="{{schedule_data[19]}}">{{schedule_data[19]}}</td>
+                <td title="{{schedule_data[33]}}">{{schedule_data[33]}}</td>
+                <td title="{{schedule_data[47]}}">{{schedule_data[47]}}</td>
+                <td title="{{schedule_data[61]}}">{{schedule_data[61]}}</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td title="{{schedule_data[6]}}">{{schedule_data[6]}}</td>
+                <td title="{{schedule_data[20]}}">{{schedule_data[20]}}</td>
+                <td title="{{schedule_data[34]}}">{{schedule_data[34]}}</td>
+                <td title="{{schedule_data[48]}}">{{schedule_data[48]}}</td>
+                <td title="{{schedule_data[62]}}">{{schedule_data[62]}}</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td title="{{schedule_data[7]}}">{{schedule_data[7]}}</td>
+                <td title="{{schedule_data[21]}}">{{schedule_data[21]}}</td>
+                <td title="{{schedule_data[35]}}">{{schedule_data[35]}}</td>
+                <td title="{{schedule_data[49]}}">{{schedule_data[49]}}</td>
+                <td title="{{schedule_data[63]}}">{{schedule_data[63]}}</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td title="{{schedule_data[8]}}">{{schedule_data[8]}}</td>
+                <td title="{{schedule_data[22]}}">{{schedule_data[22]}}</td>
+                <td title="{{schedule_data[36]}}">{{schedule_data[36]}}</td>
+                <td title="{{schedule_data[50]}}">{{schedule_data[50]}}</td>
+                <td title="{{schedule_data[64]}}">{{schedule_data[64]}}</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td title="{{schedule_data[9]}}">{{schedule_data[9]}}</td>
+                <td title="{{schedule_data[23]}}">{{schedule_data[23]}}</td>
+                <td title="{{schedule_data[37]}}">{{schedule_data[37]}}</td>
+                <td title="{{schedule_data[51]}}">{{schedule_data[51]}}</td>
+                <td title="{{schedule_data[65]}}">{{schedule_data[65]}}</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td title="{{schedule_data[10]}}">{{schedule_data[10]}}</td>
+                <td title="{{schedule_data[24]}}">{{schedule_data[24]}}</td>
+                <td title="{{schedule_data[38]}}">{{schedule_data[38]}}</td>
+                <td title="{{schedule_data[52]}}">{{schedule_data[52]}}</td>
+                <td title="{{schedule_data[66]}}">{{schedule_data[66]}}</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td title="{{schedule_data[11]}}">{{schedule_data[11]}}</td>
+                <td title="{{schedule_data[25]}}">{{schedule_data[25]}}</td>
+                <td title="{{schedule_data[39]}}">{{schedule_data[39]}}</td>
+                <td title="{{schedule_data[53]}}">{{schedule_data[53]}}</td>
+                <td title="{{schedule_data[67]}}">{{schedule_data[67]}}</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td title="{{schedule_data[12]}}">{{schedule_data[12]}}</td>
+                <td title="{{schedule_data[26]}}">{{schedule_data[26]}}</td>
+                <td title="{{schedule_data[40]}}">{{schedule_data[40]}}</td>
+                <td title="{{schedule_data[54]}}">{{schedule_data[54]}}</td>
+                <td title="{{schedule_data[68]}}">{{schedule_data[68]}}</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td title="{{schedule_data[13]}}">{{schedule_data[13]}}</td>
+                <td title="{{schedule_data[27]}}">{{schedule_data[27]}}</td>
+                <td title="{{schedule_data[41]}}">{{schedule_data[41]}}</td>
+                <td title="{{schedule_data[55]}}">{{schedule_data[55]}}</td>
+                <td title="{{schedule_data[69]}}">{{schedule_data[69]}}</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td title="{{schedule_data[14]}}">{{schedule_data[14]}}</td>
+                <td title="{{schedule_data[28]}}">{{schedule_data[28]}}</td>
+                <td title="{{schedule_data[42]}}">{{schedule_data[42]}}</td>
+                <td title="{{schedule_data[56]}}">{{schedule_data[56]}}</td>
+                <td title="{{schedule_data[70]}}">{{schedule_data[70]}}</td>
+            </tr>
         </table>
     </div>
+
+    <div class="container">
+        <h1>课程表</h1>  <ul>
+            {% for number in num %}
+                <li>{{ number }}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for code in inputs %}
+                <li>{{ code }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
 
     <div>
         {% if courses %}
@@ -190,13 +223,39 @@
             </tr>
             {% for course in courses %}
             <tr>
-                <td>{{course[0]}}</td>
-                <td>{{course[1]}}</td>
-                <td>{{course[4]}}</td>
-                <td>{{course[3]}}</td>
-                <td>hi time</td>
-                <td>ola classroom</td>
-                <td><button>選課</button></td>
+                <form method="POST">
+                    <td name="Submit-courses">{{course[0]}}</td>
+                    <td>{{course[1]}}</td>
+                    <td>{{course[6]}}</td>
+                    <td>{{course[5]}}</td>
+                    
+                    <td>
+                        {% for cresult in cresults %}
+                            {% if cresult[0] == course[0] %}
+                                ({{cresult[9]}}) {{cresult[10]}},
+                            {% endif %}
+                            
+                        {% endfor %}
+                    </td>
+                    
+                    <td>{{course[11]}}</td>
+                    
+                    <td>
+                        <!-- 
+                            if 有名額: 
+                                if 已選: 
+                                    btn -> 退選; 
+                                else:
+                                    btn -> 加選;
+                                加選; 
+                            elif 沒名額:  
+                                btn -> 關注;  # 排隊抽籤
+                        -->
+                        <form method>
+                        <input type="submit", name="Enroll", value="選課" >
+                        
+                    </td>
+                </form>
             </tr>
             {% endfor %}
         </table>
