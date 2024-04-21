@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for 
 import yaml
 import mysql.connector as mc
 from Search import osearch
@@ -34,7 +34,7 @@ def checklogin():
     UN = request.form.get('Username')
     PW = request.form.get('Password')
     
-    student = student_data(UN, conn)
+    student = student_data(UN)
     
     query1 = 'SELECT S_ID, S_pwd FROM Student WHERE S_ID=%s AND S_pwd=%s;'
     
@@ -62,7 +62,7 @@ def searchpage():
 
 @app.route("/enrolledtable")
 def enrolltable():
-    student = student_data(UN, conn)
+    student = student_data(UN)
     schedule_data = getschedlue(conn, UN)
     return render_template("enrolledtable.html", student=student, schedule_data=schedule_data)
 
