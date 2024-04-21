@@ -1,10 +1,11 @@
 class Students:
-    def __init__(self, S_ID, Name, Ttl_Credit, S_pwd, dept):
+    def __init__(self, S_ID, Name, Ttl_Credit, S_pwd, Dept):
         self.ID = S_ID
         self.Name = Name
         self.Ttl_Credit = Ttl_Credit
         self.Password = S_pwd
-        self.Dept = dept
+        self.Dept = Dept
+        
 class Courses:
     def __init__(self, Course_ID, Course_Name, Course_Dept, Course_Prereq, Course_Class, Course_Instructor, Course_Credit, Course_Capacity ,Course_Current_Ppl):
         self.ID = Course_ID
@@ -62,7 +63,7 @@ def student_data(s_id, connectServer):
     result = cur.fetchone()
     
     if result:
-        student = Students(S_ID=result[0], Name=result[1], Ttl_Credit=result[2], S_pwd=result[3], dept=result[4])
+        student = Students(S_ID=result[0], Name=result[1], Ttl_Credit=result[2], S_pwd=result[3], Dept=result[4])
         cur.close()
         return student
     else:
@@ -71,11 +72,11 @@ def student_data(s_id, connectServer):
 
 def courses_data(course_id, connectServer):
     cur = connectServer.cursor()
-    cur.execute(f"SELECT * FROM course WHERE course_id={course_id}")
+    cur.execute(f"SELECT * FROM courses WHERE course_id={course_id}")
     result = cur.fetchone()
     
     if result:
-        course = Courses(Course_ID=result[0], Name=result[1], Dept=result[2], Prereq=result[3], Class=result[4], Instructor=result[5], Credit=result[6], Capacity=result[7], Cur_Ppl=result[8])
+        course = Courses(Course_ID=result[0], Course_Name=result[1], Course_Dept=result[2], Course_Prereq=result[3], Course_Class=result[4], Course_Instructor=result[5], Course_Credit=result[6], Course_Capacity=result[7], Course_Current_Ppl=result[8])
         cur.close()
         return course
     else:
