@@ -28,3 +28,4 @@ def getschedlue(conn, UN):
         print(schedule_data)
     
     return schedule_data
+
